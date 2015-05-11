@@ -1492,7 +1492,7 @@ public class JavacHandlerUtil {
 			
 			if (javadoc != null) {
 				String[] filtered = copyMode.split(javadoc.getText());
-				if (shouldReturnThis(from)) {
+				if (shouldReturnThis(from) && copyMode == CopyJavadoc.SETTER) {
 					filtered[0] += "\n@return this";
 				}
 				dct.putComment(to, createJavadocComment(filtered[0], from));
@@ -1528,7 +1528,7 @@ public class JavacHandlerUtil {
 		
 		if (javadoc != null) {
 			String[] filtered = copyMode.split(javadoc);
-			if (shouldReturnThis(from)) {
+			if (shouldReturnThis(from) && copyMode == CopyJavadoc.SETTER) {
 				filtered[0] += "\n@return this";
 			}
 			docComments.put(to, filtered[0]);
